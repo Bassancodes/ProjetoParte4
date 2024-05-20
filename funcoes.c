@@ -19,3 +19,6 @@ typedef struct {
     char descricao[100];
     float valor;
 } Operacao;
+//clientes armazenando o valor de QTD_CLIENTES
+Cliente clientes[QTD_CLIENTES];
+int numClientes = 0;
