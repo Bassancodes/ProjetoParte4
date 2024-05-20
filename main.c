@@ -13,3 +13,40 @@ int main(){
   printf("7 - transferência entre contas\n");
   printf("0 - sair\n");
   scanf("%d", &e);
+  if (e == 1){
+          novo();
+          main();
+      }
+      else if (e ==2 ){
+          apagacliente();
+          main();
+      }
+      else if (e == 3){
+          listarcliente();
+
+          main();
+      }
+      else if (e == 4){
+          deposito();
+          main();
+      }
+      else if (e == 5){
+
+    debitoapossenha();
+          main();
+      }
+      else if (e == 6){
+    extrato();   
+          main();
+
+      }
+      else if (e == 7){
+    transferencia();
+          main();
+
+      }
+      else if (e == 0){
+          sair();
+          printf("Obrigado por usar o Banco ");
+      }
+  }
