@@ -3,7 +3,7 @@
 //o menu tem como funcao printar todas as opcoes e logo em seguida dependendo da escolha do usuario aplicar e colocar na tela a funcao desejada pelo cliente, uma funcao simples igual fizemos no banco de phyton porem a base para o banco funcionar 
 int main(){
   int e;
-  printf("\nBem vindo ao Bancon");
+  printf("\nBem vindo ao Banco Quem Poupa Tem");
   printf("1 - novo cliente\n");
   printf("2 - Apaga cliente\n");
   printf("3 - listar cliente\n");
