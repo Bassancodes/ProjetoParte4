@@ -70,4 +70,42 @@ void novo() {
 
     }
 }
+//a funcao tem como objetivo apagar uma conta ja existente no "arquivonomes", arquivo onde sao inseridas todas as informações digitadas pelo usuário, a funcao printa todas as informações necessárias, pedindo cpf e senha da conta, logo em seguida confere se ambos os dados batem com o arquivo onde as informações estao guardadas, caso as informações nao corresponderem o arquivo informa o erro e te leva ao menu novamente, caso esteje tudo certo, o codigo exclui do arquivo e informa a acao para o cliente.
+void apagacliente() {
+    char cpf[10];
+    printf("Seu CPF: ");//coloca na tela oque deve ser feito
+    scanf("%s", cpf);
+    char apagacliente[30];
+    sprintf(apagacliente, "%s.bin", cpf);
+    FILE *arquivonomes;
+    arquivonomes = fopen(apagacliente, "r");
+    if (arquivonomes == NULL) {
+        printf("Erro, tente novamente \n");//informa
+
+    }
+    else {
+        fclose(arquivonomes);
+        char senha[20];
+        printf("Sua Senha: ");//pede informacao
+        scanf("%s", senha);
+        FILE *arquivo = fopen(apagacliente, "r");//abre o arquivo para leitura e para conferir
+        char choice[2][20];
+        int i = 0;
+        while (fgets(choice[i], 20, arquivo)) { //confere
+            choice[i][strlen(choice[i]) - 1] = '\0';
+            i++;
+        }
+        fclose(arquivo);
+        if (strcmp(senha, choice[1]) == 0) { //confere
+            remove(apagacliente);
+            printf("Conta apagada com sucesso\n");
+
+        }
+        else {
+            printf("Erro, tente novamente\n");
+
+        }
+    }
+}
+
 
