@@ -30,4 +30,9 @@ void salvarClientes() {
         printf("Erro ao abrir o arquivo.\n");
         return;
     }
+  /*escrevendo dados no arquivo com clientes sendo o array de Clientes e o num de clientes para o num de clientes no arq binario*/
+      fwrite(clientes, sizeof(Cliente), numClientes, arquivo);
+  //fecha o arquivo
+      fclose(arquivo);
+  }
 
