@@ -163,3 +163,30 @@ else{
   printf("Debito realizado com sucesso =).\n");
 }
 
+void extrato() {
+    printf("Voce selecionou extrato!\n");
+    char cpf[10];
+    char senha[20];
+    //imputs
+    printf("CPF: ");
+    scanf("%s", cpf);
+
+    printf("Senha: ");
+    scanf("%s", senha);
+    //comparando strings e retorna 0 se as duas forem iguais
+    int x = -1;
+    for (int i = 0; i < numClientes; i++) {
+        if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
+            x = i;
+            break;
+        }
+    }
+    //se a condicao do laco for nao for cumprido ele executa a linha de       baixo e nao muda o valor de x
+    if (x == -1) {
+        printf("Cliente nao encontrado ou senha incorreta.'-'\n");
+        return;
+    }
+
+    printf("Extrato:\n");
+    printf("Saldo atual: R$ %.2f =) \n,", clientes[x].saldo);
+}
