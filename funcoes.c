@@ -108,4 +108,58 @@ void apagacliente() {
     }
 }
 
+void debito() {
+  printf("Voce selecionou debito!\n");
+  char cpf[10], senha[20];
+  float valor;
+  //imputs
+  printf("CPF: ");
+  scanf("%s", cpf);
+
+  printf("Senha: ");
+  scanf("%s", senha);
+  //comparando strings e retorna 0 se as duas forem iguais
+  int x = -1;
+  for (int i = 0; i < numClientes; i++) {
+      if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
+          x = i;
+          break;
+      }
+  }
+//se a condicao do laco for nao for cumprido ele executa a linha de baixo e nao muda o valor de x
+  if (x == -1) {
+      printf("Cliente nao encontrado ou senha incorreta.'-'\n");
+      return;
+  }
+
+  printf("Valor: ");
+  scanf("%f", &valor);
+  //comparando strings e retorna 0 se as duas forem iguais
+  if (strcmp(clientes[x].tipoConta, "comum") == 0) {
+    //verifica o saldo    
+    if (valor > clientes[x].saldo + 1000) {
+          printf("Saldo insuficiente. :/ \n");
+          return;
+      }
+//aplicando a taxa de 5% de débito
+      clientes[x].saldo -= valor * 0.05;  
+  } else if (strcmp(clientes[x].tipoConta, "plus") == 0) {
+   //verifica o saldo  
+    if (valor > clientes[x].saldo + 5000) {
+          printf("Saldo insuficiente.:/ \n");
+          return;
+      }
+//aplicando a taxa de 3% de débito
+      clientes[x].saldo -= valor * 0.03;  
+  } 
+  //se a condicao do laco for nao for cumprido ele executa a linha de       baixo e nao muda o valor de x 
+else{
+      printf("Tipo de conta invalido.'-'\n");
+      return;
+  }
+//volta para a funcao de amazenar no binario, adicionando no saldo
+  salvarClientes();
+
+  printf("Debito realizado com sucesso =).\n");
+}
 
