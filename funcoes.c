@@ -248,3 +248,23 @@ void transferencia() {
 
     printf("Transferencia realizada com sucesso.=)\n");
 }
+// Função para listar todos os clientes cadastrados
+void listarClientes() {
+    FILE *arquivo;
+    char nome[50];
+
+    // Abre o arquivo para leitura
+    arquivo = fopen("arquivosnomes", "r");
+
+    printf("Lista de Clientes:\n");
+
+    // Lê e exibe os nomes dos clientes enquanto não atingir o fim do arquivo
+    while (fgets(nome, sizeof(nome), arquivo) != NULL) {
+        printf("%s", nome);
+    }
+    fclose(arquivo);
+}
+
+void sair() {
+    exit(0);
+}
