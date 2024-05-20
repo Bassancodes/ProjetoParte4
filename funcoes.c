@@ -22,3 +22,12 @@ typedef struct {
 //clientes armazenando o valor de QTD_CLIENTES
 Cliente clientes[QTD_CLIENTES];
 int numClientes = 0;
+//funcao para salvar clientes em um arq binario
+void salvarClientes() {  
+  FILE *arquivo = fopen("clientes.bin", "wb");
+  //se o arquivo nao estiver apontando valor para a memoria da em erro    
+  if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
