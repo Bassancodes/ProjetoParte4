@@ -191,3 +191,60 @@ void extrato() {
     printf("Saldo atual: R$ %.2f =) \n,", clientes[x].saldo);
 }
 
+// a funcao pede e confere o cpf e senha como as outras, a funcao tambem pede o cpf da conta que deseja transferir o vlaor, apos isso funcao informa a tranferencia com o valor o saldo novo e a taifa ja implementada no codigo 
+void transferencia() {
+    printf("Voce selecionou tranferencia!\n");
+    char cpfOrigem[10], senhaOrigem[20], cpfDestino[10];
+    float valor;
+  //imputs
+    printf("CPF (Origem): ");
+    scanf("%s", cpfOrigem);
+
+    printf("Senha (Origem): ");
+    scanf("%s", senhaOrigem);
+
+    printf("CPF (Destino): ");
+    scanf("%s", cpfDestino);
+    //comparando strings e retorna 0 se as duas forem iguais
+    int i, xOrigem = -1, xDestino = -1;
+    for (i = 0; i < numClientes; i++) {
+        if (strcmp(clientes[i].cpf, cpfOrigem) == 0 && strcmp(clientes[i].senha, senhaOrigem) == 0) {
+            xOrigem = i;
+        } else if (strcmp(clientes[i].cpf, cpfDestino) == 0) {
+            xDestino = i;
+        }
+    }
+
+    if (xOrigem == -1 || xDestino == -1) {
+        printf("Cliente(s) nao encontrado(s) ou senha incorreta.'-'\n");
+        return;
+    }
+    //digita o valor e se estiver sem saldo retorna
+    printf("Valor: ");
+    scanf("%f", &valor);
+
+    if (strcmp(clientes[xOrigem].tipoConta, "comum") == 0) {
+        if (valor > clientes[xOrigem].saldo + 1000) {
+            printf("Saldo insuficiente. =( \n");
+            return;
+        }
+        //aplicando a taxa de 5% de débito 
+        clientes[xOrigem].saldo -= valor * 0.05;  
+    } else if (strcmp(clientes[xOrigem].tipoConta, "plus") == 0) {
+        if (valor > clientes[xOrigem].saldo + 5000) {
+            printf("Saldo insuficiente. =( \n");
+            return;
+        }
+        //aplicando a taxa de 3% de débito
+        clientes[xOrigem].saldo -= valor * 0.03;  
+    } else {
+        printf("Tipo de conta invalido.'-'\n");
+        return;
+    }
+
+    clientes[xDestino].saldo += valor;
+
+    salvarClientes();
+
+    printf("Transferencia realizada com sucesso.=)\n");
+}
