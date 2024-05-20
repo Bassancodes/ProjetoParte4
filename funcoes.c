@@ -190,3 +190,4 @@ void extrato() {
     printf("Extrato:\n");
     printf("Saldo atual: R$ %.2f =) \n,", clientes[x].saldo);
 }
+
