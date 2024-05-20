@@ -35,4 +35,39 @@ void salvarClientes() {
   //fecha o arquivo
       fclose(arquivo);
   }
+void novo() {
+    printf("Novo cliente");//coloca na tela oque deve ser feito
+    char cpf[10];//pede para o cliente informar o cpf
+    printf("Seu CPF: ");//coloca na tela oque deve ser feito
+    scanf("%s", cpf);//le o cpf
+    char filename[40];//formata e armazena
+    sprintf(filename, "%s.bin", cpf);//print no arquivo
+    FILE *arquivosnomes; //arquivo com as informacoes
+    arquivosnomes = fopen(filename, "r");//abre o arquivo para leitura
+    if (!arquivosnomes) { //optei por nao usar o = NULL 
+        char nome[50], senha[20], tipooo[2];//as informacoes em seus numeros combinados
+        float valor;
+        printf("Seu nome: ");//coloca na tela oque deve ser feito
+        scanf("%s", nome);//le
+        printf("Coloque sua senha: ");//coloca na tela oque deve ser feito
+        scanf("%s", senha);//le
+        printf("escolha um tipo de conta: 1-Comum 2-Plus. ");//coloca na tela oque deve ser feito
+        scanf("%s", tipooo);//le
+        printf("Valor inicial da conta: ");//coloca na tela oque deve ser feito
+        scanf("%f", &valor);//le
+        char tipo[6];
+        if (strcmp(tipooo, "1") == 0) {
+            strcpy(tipo, "comum");//caso a escolha for 1 tipo commum
+        }
+        else {//caso contrario tipo plus
+            strcpy(tipo, "plus");
+        }
+        arquivosnomes = fopen(filename, "w");//abre o arquivo para escrita
+        fprintf(arquivosnomes, "Nome: %s Seu CPF: %s Senha: %s Tipo: %s", nome, cpf, senha, tipo);//coloca os dados
+        fprintf(arquivosnomes, "Tarifa:     0.00   "; //coloca valores
+        fclose(arquivosnomes);// fecha o arquivo
+      printf("Conta cadastrada.\n");//informa
+
+    }
+}
 
