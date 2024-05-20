@@ -13,3 +13,9 @@ typedef struct {
     float saldo;
     char senha[20];
 } Cliente;
+//definicoes das operacoes
+typedef struct {
+    char data[20];
+    char descricao[100];
+    float valor;
+} Operacao;
